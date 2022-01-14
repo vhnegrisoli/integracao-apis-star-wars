@@ -1,0 +1,6 @@
+server:
+  port: 8081
+
+services:
+  star-wars-api:
+    url: https://swapi.dev/api/films?format=json
