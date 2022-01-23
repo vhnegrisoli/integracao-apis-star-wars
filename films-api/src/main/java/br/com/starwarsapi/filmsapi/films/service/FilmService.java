@@ -4,7 +4,6 @@ import br.com.starwarsapi.filmsapi.films.client.FilmClient;
 import br.com.starwarsapi.filmsapi.films.dto.StarWarsApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 @Service
 public class FilmService {
@@ -23,7 +22,7 @@ public class FilmService {
         }
     }
 
-    public StarWarsApiResponse findMovieByTitle(@PathVariable String title) {
+    public StarWarsApiResponse findMovieByTitle(String title) {
         try {
             return filmClient
                 .findByMovieTitle(title)
