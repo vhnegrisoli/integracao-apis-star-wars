@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: films-api-dp
+  namespace: star-wars-api-ns
+spec:
+  template:
+    metadata:
+      name: films-api-pod
+      labels:
+        app: films-api
+    spec:
+      containers:
+        - name: films-api
+          image: vhnegrisoli/films-api:latest
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 8081
+
+  selector:
+    matchLabels:
+      app: films-api
+  replicas: 5

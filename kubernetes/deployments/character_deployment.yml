@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: character-api-dp
+  namespace: star-wars-api-ns
+spec:
+  template:
+    metadata:
+      name: character-api-pod
+      labels:
+        app: character-api
+    spec:
+      containers:
+        - name: character-api
+          image: vhnegrisoli/character-api:latest
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 8082
+
+  selector:
+    matchLabels:
+      app: character-api
+  replicas: 5

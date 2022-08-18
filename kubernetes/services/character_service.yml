@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: character-api-svc
+  namespace: star-wars-api-ns
+spec:
+  type: ClusterIP
+  selector:
+    app: character-api
+  ports:
+    - protocol: TCP
+      targetPort: 8082
+      port: 8082

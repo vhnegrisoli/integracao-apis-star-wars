@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gateway-api-dp
+  namespace: star-wars-api-ns
+spec:
+  template:
+    metadata:
+      name: gateway-api-pod
+      labels:
+        app: gateway-api
+    spec:
+      containers:
+        - name: gateway-api
+          image: vhnegrisoli/gateway-api:latest
+          env:
+            - name: MOVIE_API_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: gateway-api-map
+                  key: MOVIE_API_URL
+            - name: CHARACTER_API_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: gateway-api-map
+                  key: CHARACTER_API_URL
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 3000
+
+  selector:
+    matchLabels:
+      app: gateway-api
+  replicas: 5

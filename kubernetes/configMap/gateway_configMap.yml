@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: gateway-api-map
+  namespace: star-wars-api-ns
+data:
+  MOVIE_API_URL: "http://films-api-svc.star-wars-api-ns.svc.cluster.local:8081"
+  CHARACTER_API_URL: "http://character-api-svc.star-wars-api-ns.svc.cluster.local:8082"
